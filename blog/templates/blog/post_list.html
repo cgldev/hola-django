@@ -6,6 +6,7 @@ Publicaciones
 Lista de publicaciones
 {% endblock content_title %}
 {% block content %}
+<a href="{% url 'blog:post_create' %}" class="btn btn-primary mb-3">Crear nueva publicación</a>
 <ul class="list-group my-4">
   {% for post in posts %}
   <li class="list-group-item">

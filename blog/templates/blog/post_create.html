@@ -1,0 +1,17 @@
+{% extends 'Main/base.html' %}
+{% block title %}
+Publicar
+{% endblock title %}
+{% block content_title %}
+Fromulario para crear publicación
+{% endblock content_title %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Enviar" class="btn btn-primary"></input>
+    <a href="{% url 'blog:post_list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock content %}

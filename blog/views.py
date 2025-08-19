@@ -5,7 +5,11 @@ from .models import Post
 from .forms import PostForm
 
 def post_list(request):
-    post_list = Post.objects.all()
+    busqueda=request.GET.get('busqueda', None)
+    if busqueda:
+        post_list = Post.objects.filter(titulo__icontains=busqueda)
+    else:
+        post_list = Post.objects.all()
     return render(request, 'blog/post_list.html', context={'posts': post_list})
 
 #vista del formulario

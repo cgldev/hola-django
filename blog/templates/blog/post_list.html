@@ -7,6 +7,11 @@ Lista de publicaciones
 {% endblock content_title %}
 {% block content %}
 <a href="{% url 'blog:post_create' %}" class="btn btn-primary mb-3">Crear nueva publicación</a>
+<form action="{% url 'blog:post_list' %}" method="get">
+  <div class="input-group">
+    <input type="text" name="busqueda" class="form-control" placeholder="Buscar publicaciones..." type="submit">
+  </div>
+</form>
 <ul class="list-group my-4">
   {% for post in posts %}
   <li class="list-group-item">

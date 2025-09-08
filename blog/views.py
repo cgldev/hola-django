@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, DeleteView
+from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from .models import Post
 from .forms import PostForm
 
-# vista de clase
+# vista listar
 class PostListView(ListView):
     model = Post
     template_name = 'blog/post_list.html'
@@ -28,13 +28,14 @@ class PostDeleteView(DeleteView):
     model = Post
     success_url = reverse_lazy('blog:post_list')
 
-#vista del formulario
-def post_create(request):
-    if request.method == 'POST':
-        form = PostForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('blog:post_list')
-    else:
-        form = PostForm()
-    return render(request, 'blog/post_create.html', context={'form': form})
+#vista actualizar
+class PostUpdateView(UpdateView):
+    model = Post
+    form_class = PostForm  
+    success_url = reverse_lazy('blog:post_list')
+
+#vista crear
+class PostCreateView(CreateView):
+    model = Post
+    form_class = PostForm    
+    success_url = reverse_lazy('blog:post_list')    
